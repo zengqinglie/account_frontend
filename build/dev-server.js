@@ -34,16 +34,15 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-// // proxy api requests
-// Object.keys(proxyTable).forEach(function (context) {
-//   var options = proxyTable[context]
-//   if (typeof options === 'string') {
-//     options = { target: options }
-//   }
-//   app.use(proxyMiddleware(context, options))
-// })
-app.use('/api',proxyMiddleware({target: 'http://192.168.150.26:10080', changeOrigin: true}))
-app.use('/auth',proxyMiddleware({target: 'http://192.168.150.26:10080', changeOrigin: true}))
+// proxy api requests
+Object.keys(proxyTable).forEach(function (context) {
+  var options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = { target: options }
+  }
+  app.use(proxyMiddleware(context, options))
+})
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 

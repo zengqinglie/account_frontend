@@ -1,21 +1,18 @@
 <template>
 	<div id="app">
-		<transition name="bounce">
-			<router-view></router-view>
-		</transition>
+		<!--<transition name="bounce">-->
+		<router-view></router-view>
+		<!--</transition>-->
 	</div>
 </template>
 
 <script>
 
-export default {
-  name: 'app',
-  components: {
-  },
-  created:function(){
-	  this.$router.replace('/mon/status')
-  }
-}
+	export default {
+		name: 'app',
+		components: {
+		}
+	}
 </script>
 
 <style>
@@ -52,6 +49,16 @@ export default {
 			transform: scale(0);
 		}
 	}
+
+
+
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity .5s
+	}
+	.fade-enter, .fade-leave-active {
+		opacity: 0
+	}
+
 	
 	body {
 		/*background-color: #324057;*/
@@ -61,7 +68,8 @@ export default {
 		background-size: cover;*/
 		background: #1F2D3D;
 		font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
-		font-weight: 400;
+		/*font-weight: 400;*/
+		font-size:14px;
 		-webkit-font-smoothing: antialiased;
 	}
 	
@@ -80,5 +88,14 @@ export default {
 	.el-menu-item [class^=fa] {
 		vertical-align: baseline;
 		margin-right: 10px;
+	}
+
+	.toolbar .el-form-item {
+		margin-bottom: 10px;
+	}
+	
+	.toolbar {
+		background: #fff;
+		padding: 10px 10px 0px 10px;
 	}
 </style>

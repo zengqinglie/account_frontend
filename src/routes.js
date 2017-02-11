@@ -1,48 +1,39 @@
-/**
- * Created by lingfohn on 16-12-28.
- */
+import Login from './pages/Login.vue'
+import NotFound from './pages/404.vue'
+import Home from './pages/Home.vue'
+import Main from './pages/Main.vue'
+import Table from './pages/nav1/Table.vue'
+import Form from './pages/nav1/Form.vue'
+import user from './pages/nav1/user.vue'
+import Page4 from './pages/nav2/Page4.vue'
+import Page5 from './pages/nav2/Page5.vue'
+import Page6 from './pages/nav3/Page6.vue'
+import echarts from './pages/charts/echarts.vue'
 
-import Login from './components/Login.vue'
-import Home from './components/Home.vue'
-import Main from './components/Main.vue'
-import Table from './components/core/demo/Table.vue'
-import Form from './components/core/demo/Form.vue'
-import Page3 from './components/core/demo/Page3.vue'
-import Page4 from './components/core/demo/Page4.vue'
-import Page5 from './components/core/demo/Page5.vue'
-import Page6 from './components/core/demo/Page6.vue'
-import Tree from './components/core/demo/Tree.vue'
-import echarts from './components/core/demo/echarts.vue'
-import Menu from './components/core/Menu.vue'
-import Roles from './components/sys/Roles.vue'
-import MonStatus from './components/mon/status.vue'
-
-export default [
+let routes = [
     {
         path: '/login',
         component: Login,
-        hidden: true//不显示在导航中
+        name: '',
+        hidden: true
     },
     {
-        path: '/',
-        component: Home,
+        path: '/404',
+        component: NotFound,
         name: '',
-        iconCls: 'fa fa-address-card',
-        leaf: true,//只有一个节点
-        hidden:true,
-        children: [
-            { path: '/main', component: Main, name: '主页面' }
-        ]
+        hidden: true
     },
+    //{ path: '/main', component: Main },
     {
         path: '/',
         component: Home,
         name: '导航一',
         iconCls: 'el-icon-message',//图标样式class
         children: [
+            { path: '/main', component: Main, name: '主页', hidden: true },
             { path: '/table', component: Table, name: 'Table' },
-            { path: '/form', component: Form, name: 'Form',hidden:false},
-            { path: '/page3', component: Page3, name: '页面3' },
+            { path: '/form', component: Form, name: 'Form' },
+            { path: '/user', component: user, name: '列表' },
         ]
     },
     {
@@ -75,40 +66,10 @@ export default [
         ]
     },
     {
-        path: '/core',
-        component: Home,
-        name: '系统管理',
-        iconCls: 'fa fa-bar-chart',
-        children: [
-            { path: '/core/menu', component: Menu, name: '菜单' },
-            { path: '/core/docvue', component: Page3, name: '菜单' },
-            { path: '/core/docConv', component: Page3, name: '菜单' },
-            { path: '/cmdb/hosts', component: Page3, name: '菜单' },
-            { path: '/cmdb/claster', component: Page3, name: '菜单' },
-            { path: '/sys/roles', component: Roles, name: '菜单' },
-
-        ]
-    },
-    {
-        path: '/core/demo',
-        component: Home,
-        name: '前端DEMO',
-        iconCls: 'fa fa-bar-chart',
-        children: [
-            { path: '/core/demo/table', component: Table, name: 'Table' },
-            { path: '/core/demo/form', component: Form, name: 'form' },
-            { path: '/core/demo/echarts', component: echarts, name: 'Echarts' },
-            { path: '/core/demo/tree', component: Tree, name: 'Echarts' },
-
-        ]
-    },
-    {
-        path: '/mon',
-        component: Home,
-        children: [
-            { path: '/mon/status', component: MonStatus, name: 'Table' },
-
-        ]
+        path: '*',
+        hidden: true,
+        redirect: { path: '/404' }
     }
+];
 
-]
+export default routes;
